@@ -1,17 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders correctly 1`] = `
+exports[`<ThemedText /> snapshot 1`] = `
 <Text
   style={
     [
       {
-        "color": "#11181C",
-      },
-      {
         "fontSize": 16,
-        "lineHeight": 24,
+        "fontWeight": "400",
       },
-      undefined,
       undefined,
       undefined,
       undefined,
@@ -19,6 +15,6 @@ exports[`renders correctly 1`] = `
     ]
   }
 >
-  Snapshot test!
+  Rabbit
 </Text>
 `;

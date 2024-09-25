@@ -1,11 +1,12 @@
 import { StyleSheet, SafeAreaView, View, ActivityIndicator, Alert } from 'react-native';
 import { useEffect, useState } from 'react';
-import { ApiClient } from '../_layout';
 import { ListZellerCustomers } from '@/graphql/queries';
 import UserTypes from '@/components/home/UserTypes';
 import { User, UserType } from '@/types';
 import { Colors } from '@/constants/Colors';
 import CustomerList from '@/components/home/CustomerList';
+import { ApiClient } from '@/services/Api';
+import _ from 'lodash';
 
 export default function HomeScreen() {
 
@@ -17,11 +18,10 @@ export default function HomeScreen() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        //add filter
-        const result: any = await ApiClient.graphql({
+        const result = await ApiClient.graphql({
           query: ListZellerCustomers,
         });
-        setListItems(result.data.listZellerCustomers.items)
+        setListItems(_.get(result, 'data.listZellerCustomers.items', []))
       } catch (err) {
         Alert.alert('Failed to fetch customers')
       } finally {
@@ -52,5 +52,4 @@ const styles = StyleSheet.create({
   subContainer: {
     padding: 24,
   },
-
 });

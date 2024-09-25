@@ -1,12 +1,12 @@
-import { View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet, Text } from 'react-native';
 import ListItem from './ListItem';
 import { ThemedText } from '../ThemedText';
-import { User } from '@/types';
+import { User, UserType } from '@/types';
 import { capitalizeWords } from '@/utils';
 
 type CustomerListProps = {
     items: User[],
-    selectedValue: string
+    selectedValue: UserType
 }
 
 export default function CustomerList(props: CustomerListProps) {
@@ -15,9 +15,17 @@ export default function CustomerList(props: CustomerListProps) {
         <View>
             <ThemedText type='title'>{capitalizeWords(selectedValue)} Users</ThemedText>
             <FlatList
+                style={styles.listContainer}
                 data={items}
                 renderItem={(item) => (selectedValue == item.item.role ? <ListItem user={item.item} /> : null)}
+                ListEmptyComponent={() => <Text>No users found</Text>}
             />
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    listContainer: {
+        marginVertical: 20
+    }
+});

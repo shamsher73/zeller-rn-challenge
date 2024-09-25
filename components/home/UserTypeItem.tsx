@@ -17,8 +17,15 @@ export default function UserTypeItem(props: UserTypeItemProps) {
     return (
         <TouchableOpacity
             style={[styles.container, { backgroundColor: isSelected ? Colors.secondary : Colors.background }]}
-            onPress={() => setSelectedValue(title)}>
-            <MaterialIcons name={isSelected ? "radio-button-checked" : "radio-button-unchecked"} size={24} color={Colors.primary} />
+            onPress={() => setSelectedValue(title)}
+            testID='user-type-item'
+        >
+            <MaterialIcons
+                name={isSelected ? "radio-button-checked" : "radio-button-unchecked"}
+                size={24}
+                color={Colors.primary}
+                style={styles.icon}
+            />
             <ThemedText >{capitalizeWords(title)}</ThemedText>
         </TouchableOpacity>
     );
@@ -28,7 +35,10 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 12,
+        paddingVertical: 12,
         borderRadius: 8,
     },
+    icon: {
+        marginHorizontal: 10
+    }
 });
