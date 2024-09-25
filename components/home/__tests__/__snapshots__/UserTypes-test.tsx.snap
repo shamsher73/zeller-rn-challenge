@@ -186,5 +186,14 @@ exports[`<UserTypes /> snapshot 1`] = `
       </Text>
     </View>
   </View>
+  <View
+    style={
+      {
+        "borderBottomColor": "grey",
+        "borderBottomWidth": 0.5,
+        "marginVertical": 16,
+      }
+    }
+  />
 </View>
 `;

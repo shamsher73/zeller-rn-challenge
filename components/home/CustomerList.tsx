@@ -3,6 +3,7 @@ import ListItem from './ListItem';
 import { ThemedText } from '../ThemedText';
 import { User, UserType } from '@/types';
 import { capitalizeWords } from '@/utils';
+import Divider from '../Divider';
 
 type CustomerListProps = {
     items: User[],
@@ -20,6 +21,7 @@ export default function CustomerList(props: CustomerListProps) {
                 renderItem={(item) => (selectedValue == item.item.role ? <ListItem user={item.item} /> : null)}
                 ListEmptyComponent={() => <Text>No users found</Text>}
             />
+            <Divider />
         </View>
     );
 }

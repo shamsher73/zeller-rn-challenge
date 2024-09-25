@@ -221,5 +221,14 @@ exports[`<CustomerList /> snapshot 1`] = `
       </View>
     </View>
   </RCTScrollView>
+  <View
+    style={
+      {
+        "borderBottomColor": "grey",
+        "borderBottomWidth": 0.5,
+        "marginVertical": 16,
+      }
+    }
+  />
 </View>
 `;

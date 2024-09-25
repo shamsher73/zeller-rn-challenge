@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import UserTypeItem from './UserTypeItem';
 import { ThemedText } from '../ThemedText';
 import { UserType } from '@/types';
+import Divider from '../Divider';
 
 type UserTypesProps = {
     list: UserType[],
@@ -23,7 +24,7 @@ export default function UserTypes(props: UserTypesProps) {
             <View style={styles.listContainer} >
                 {UserList()}
             </View>
-
+            <Divider />
         </View>
     );
 }
