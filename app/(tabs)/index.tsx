@@ -1,5 +1,5 @@
 import { StyleSheet, SafeAreaView, View, ActivityIndicator, Alert } from 'react-native';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ListZellerCustomers } from '@/graphql/queries';
 import UserTypes from '@/components/home/UserTypes';
 import { User, UserType } from '@/types';
@@ -16,21 +16,21 @@ export default function HomeScreen() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const result = await ApiClient.graphql({
-          query: ListZellerCustomers,
-        });
-        setListItems(_.get(result, 'data.listZellerCustomers.items', []))
-      } catch (err) {
-        Alert.alert('Failed to fetch customers')
-      } finally {
-        setLoading(false);
-      }
-    };
-
     getUsers();
   }, [selectedValue]);
+
+  const getUsers = useCallback(async () => {
+    try {
+      const result = await ApiClient.graphql({
+        query: ListZellerCustomers,
+      });
+      setListItems(_.get(result, 'data.listZellerCustomers.items', []))
+    } catch {
+      Alert.alert('Failed to fetch customers')
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   if (loading) return <ActivityIndicator />;
 
@@ -38,7 +38,7 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.subContainer}>
         <UserTypes list={list} selectedValue={selectedValue} setSelectedValue={setSelectedValue} />
-        <CustomerList items={listItems} selectedValue={selectedValue} />
+        <CustomerList items={listItems} selectedValue={selectedValue} getUsers={getUsers} />
       </View>
     </SafeAreaView>
   );

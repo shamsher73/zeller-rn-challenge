@@ -45,6 +45,12 @@ exports[`<CustomerList /> snapshot 1`] = `
     onScroll={[Function]}
     onScrollBeginDrag={[Function]}
     onScrollEndDrag={[Function]}
+    refreshControl={
+      <RefreshControlMock
+        onRefresh={[Function]}
+        refreshing={false}
+      />
+    }
     removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={0.0001}
@@ -56,6 +62,7 @@ exports[`<CustomerList /> snapshot 1`] = `
     }
     viewabilityConfigCallbackPairs={[]}
   >
+    <RCTRefreshControl />
     <View>
       <View
         onFocusCapture={[Function]}

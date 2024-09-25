@@ -13,7 +13,7 @@ type UserTypeItemProps = {
 
 export default function UserTypeItem(props: UserTypeItemProps) {
     const { title, selectedValue, setSelectedValue } = props
-    const isSelected = selectedValue == title ? true : false;
+    const isSelected = selectedValue === title ? true : false;
     return (
         <TouchableOpacity
             style={[styles.container, { backgroundColor: isSelected ? Colors.secondary : Colors.background }]}

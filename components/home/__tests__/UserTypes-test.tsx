@@ -1,6 +1,5 @@
 import { UserType } from '@/types';
 import { render } from '@testing-library/react-native';
-import UserTypeItem from '../UserTypeItem';
 import UserTypes from '../UserTypes';
 import { capitalizeWords } from '@/utils';
 
