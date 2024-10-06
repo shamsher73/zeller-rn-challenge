@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react-native';
 import CustomerList from '../CustomerList';
-import { User, UserType } from '@/types';
+import { Customer, UserType } from '@/types';
 
 describe('<CustomerList />', () => {
 
@@ -11,7 +11,8 @@ describe('<CustomerList />', () => {
         ];
         const selectedValue = UserType.ADMIN;
         const getUsers = jest.fn()
-        const { getByText } = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} />);
+        const filterUsers = jest.fn()
+        const { getByText } = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} filterUsers={filterUsers} isLoading={false} />);
         expect(getByText('Admin Users')).toBeTruthy();
         expect(getByText('John Doe')).toBeTruthy();
         expect(getByText('Jane Smith')).toBeTruthy();
@@ -24,19 +25,21 @@ describe('<CustomerList />', () => {
         ];
         const selectedValue = UserType.ADMIN;
         const getUsers = jest.fn()
-        const { getByText } = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} />);
+        const filterUsers = jest.fn()
+        const { getByText } = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} filterUsers={filterUsers} isLoading={false} />);
         expect(getByText('Admin Users')).toBeTruthy();
         expect(getByText('Admin')).toBeTruthy();
     });
 
 
     it('should handle empty list of users gracefully', () => {
-        const items: User[] = [];
+        const items: Customer[] = [];
         const selectedValue = UserType.MANAGER;
         const getUsers = jest.fn()
-        const { getByText, queryByText } = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} />);
+        const filterUsers = jest.fn()
+        const { getByText, queryByText } = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} filterUsers={filterUsers} isLoading={false} />);
         expect(getByText('Manager Users')).toBeTruthy();
-        expect(queryByText('No users found')).toBeTruthy();
+        expect(queryByText('No customers found')).toBeTruthy();
     });
 
     test('snapshot', () => {
@@ -46,7 +49,8 @@ describe('<CustomerList />', () => {
         ];
         const selectedValue = UserType.ADMIN;
         const getUsers = jest.fn()
-        const tree = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} />).toJSON();
+        const filterUsers = jest.fn()
+        const tree = render(<CustomerList items={items} selectedValue={selectedValue} getUsers={getUsers} filterUsers={filterUsers} isLoading={false} />).toJSON();
         expect(tree).toMatchSnapshot();
     });
 });

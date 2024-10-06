@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CustomerList /> snapshot 1`] = `
-<View>
+<View
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
   <Text
     style={
       [
@@ -19,8 +25,25 @@ exports[`<CustomerList /> snapshot 1`] = `
     Admin
      Users
   </Text>
+  <TextInput
+    onChangeText={[Function]}
+    style={
+      {
+        "borderColor": "gray",
+        "borderRadius": 5,
+        "borderWidth": 1,
+        "marginBottom": 10,
+        "paddingHorizontal": 10,
+      }
+    }
+    value=""
+  />
   <RCTScrollView
-    ListEmptyComponent={[Function]}
+    ListEmptyComponent={
+      <Text>
+        No customers found
+      </Text>
+    }
     data={
       [
         {
@@ -47,7 +70,7 @@ exports[`<CustomerList /> snapshot 1`] = `
     onScrollEndDrag={[Function]}
     refreshControl={
       <RefreshControlMock
-        onRefresh={[Function]}
+        onRefresh={[MockFunction]}
         refreshing={false}
       />
     }

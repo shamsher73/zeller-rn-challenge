@@ -1,10 +1,10 @@
 import { StyleSheet, View } from 'react-native';
 import LetterBox from '../LetterBox';
 import { ThemedText } from '../ThemedText';
-import { capitalizeWords } from '@/utils';
-import { User } from '@/types';
+import { Customer } from '@/types';
+import { capitalizeWords } from '@/core/utils';
 
-export default function ListItem({ user }: { user: User }) {
+const ListItem = ({ user }: { user: Customer }) => {
     return (
         <View style={styles.container}>
             <LetterBox character={user.name.charAt(0)} />
@@ -15,6 +15,8 @@ export default function ListItem({ user }: { user: User }) {
         </View>
     );
 }
+
+export default ListItem;
 
 const styles = StyleSheet.create({
     container: {

@@ -1,4 +1,4 @@
-export type User = {
+export type Customer = {
     id: string,
     name: string,
     role: string,
@@ -10,9 +10,7 @@ export enum UserType {
 }
 
 export type QueryResponse = {
-    data: {
-        listZellerCustomers: {
-            items: User[];
-        };
-    }
+    listZellerCustomers: {
+        items: Customer[];
+    };
 };

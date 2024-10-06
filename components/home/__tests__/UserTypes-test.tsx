@@ -1,7 +1,7 @@
-import { UserType } from '@/types';
 import { render } from '@testing-library/react-native';
 import UserTypes from '../UserTypes';
-import { capitalizeWords } from '@/utils';
+import { UserType } from '@/types';
+import { capitalizeWords } from '@/core/utils';
 
 describe('<UserTypes />', () => {
     it('should render UserTypes component correctly with given props', () => {

@@ -1,7 +1,7 @@
-import { UserType } from '@/types';
 import { fireEvent, render } from '@testing-library/react-native';
 import UserTypeItem from '../UserTypeItem';
 import { Colors } from '@/constants/Colors';
+import { UserType } from '@/types';
 
 describe('<UserTypeItem />', () => {
 

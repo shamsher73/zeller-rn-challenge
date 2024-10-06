@@ -1,4 +1,4 @@
-import { capitalizeWords } from "..";
+import { capitalizeWords } from "../utils";
 
 describe('capitalize function test', () => {
     it('should capitalize all words in a sentence', () => {

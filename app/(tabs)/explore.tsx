@@ -1,9 +1,11 @@
-import { SafeAreaView } from 'react-native';
 
-export default function TabTwoScreen() {
-  return (
-    <SafeAreaView>
+import { Button, SafeAreaView } from 'react-native';
+import { router } from 'expo-router';
 
-    </SafeAreaView>
-  );
+export default function Explore() {
+    return (
+        <SafeAreaView>
+            <Button onPress={() => router.back()} title='Back' />
+        </SafeAreaView>
+    );
 }

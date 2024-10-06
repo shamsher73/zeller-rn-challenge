@@ -1,9 +1,9 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { ThemedText } from '../ThemedText';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { capitalizeWords } from '@/utils';
-import { UserType } from '@/types';
 import { Colors } from '@/constants/Colors';
+import { UserType } from '@/types';
+import { capitalizeWords } from '@/core/utils';
 
 type UserTypeItemProps = {
     title: UserType,

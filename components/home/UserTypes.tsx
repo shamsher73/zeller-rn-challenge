@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native';
 import UserTypeItem from './UserTypeItem';
 import { ThemedText } from '../ThemedText';
-import { UserType } from '@/types';
 import Divider from '../Divider';
+import { UserType } from '@/types';
 
 type UserTypesProps = {
     list: UserType[],

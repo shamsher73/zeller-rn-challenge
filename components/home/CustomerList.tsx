@@ -1,39 +1,36 @@
-import { View, FlatList, StyleSheet, Text, RefreshControl } from 'react-native';
+import { View, FlatList, StyleSheet, Text, RefreshControl, TextInput } from 'react-native';
 import ListItem from './ListItem';
 import { ThemedText } from '../ThemedText';
-import { User, UserType } from '@/types';
-import { capitalizeWords } from '@/utils';
 import Divider from '../Divider';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
+import { Customer, UserType } from '@/types';
+import { capitalizeWords } from '@/core/utils';
 
 type CustomerListProps = {
-    items: User[],
+    items: Customer[],
     selectedValue: UserType
     getUsers: () => void
+    filterUsers: (text: string) => void
+    isLoading: boolean
 }
 
 export default function CustomerList(props: CustomerListProps) {
-    const { items, selectedValue, getUsers } = props
-    const [refreshing, setRefreshing] = useState(false);
+    const { items, selectedValue, getUsers, filterUsers, isLoading } = props
+    const [text, setText] = useState('');
 
-    const onRefresh = useCallback(() => {
-        setRefreshing(true);
-        getUsers()
-        setTimeout(() => {
-            setRefreshing(false);
-        }, 2000);
-    }, []);
+    const renderItem = ({ item }: { item: Customer }) => <ListItem user={item} />
 
     return (
-        <View>
+        <View style={styles.container}>
             <ThemedText type='title'>{capitalizeWords(selectedValue)} Users</ThemedText>
+            <TextInput value={text} style={styles.inputContainer} onChangeText={(t) => { setText(t); filterUsers(t) }} />
             <FlatList
                 style={styles.listContainer}
                 data={items}
-                renderItem={(item) => (selectedValue === item.item.role ? <ListItem user={item.item} /> : null)}
-                ListEmptyComponent={() => <Text>No users found</Text>}
+                renderItem={renderItem}
+                ListEmptyComponent={<Text>No customers found</Text>}
                 refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    <RefreshControl refreshing={isLoading} onRefresh={getUsers} />
                 }
             />
             <Divider />
@@ -42,8 +39,17 @@ export default function CustomerList(props: CustomerListProps) {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     listContainer: {
-        marginVertical: 20,
-
+        marginVertical: 20
+    },
+    inputContainer: {
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
     }
 });
